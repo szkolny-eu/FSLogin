@@ -7,6 +7,12 @@ class FSCertificateResponse {
     @Selector("title")
     var pageTitle: String = ""
 
+    @Selector("#ErrorTextLabel")
+    var errorTextAdfs: String = ""
+
+    @Selector(".ErrorMessage")
+    var errorTextCufs: String = ""
+
     @Selector("form[name=hiddenform]", attr = "action")
     var formAction: String = ""
 

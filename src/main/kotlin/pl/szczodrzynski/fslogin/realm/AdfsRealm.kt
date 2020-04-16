@@ -92,7 +92,7 @@ open class AdfsRealm(
         }
 
         if (certificate?.pageTitle?.startsWith("Working...") != true)
-            return null
+            return certificate
         println("Got certificate for ${certificate.formAction}")
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm()) {
@@ -102,7 +102,7 @@ open class AdfsRealm(
                 "wctx" to certificate.wctx
             )).execute().body()
             if (certificate?.pageTitle?.startsWith("Working...") != true)
-                return null
+                return certificate
             println("Got certificate for ${certificate.formAction}")
         }
 

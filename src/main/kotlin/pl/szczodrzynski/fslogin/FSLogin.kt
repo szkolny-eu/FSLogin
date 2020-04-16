@@ -15,7 +15,7 @@ class FSLogin(
     val username: String,
     val password: String,
     val onSuccess: (cert: FSCertificateResponse?) -> Unit,
-    val onFailure: () -> Unit
+    val onFailure: (errorText: String) -> Unit
 ) {
     val http by lazy {
         OkHttpClient.Builder()
@@ -46,26 +46,17 @@ class FSLogin(
         if (certificate?.pageTitle?.startsWith("Working...") == true) {
             onSuccess(certificate)
         }
-        else {
-            onFailure()
+        else if (certificate != null) {
+            val errorText = if (certificate.errorTextCufs.isNotBlank())
+                certificate.errorTextCufs
+            else if (certificate.errorTextAdfs.isNotBlank())
+                certificate.errorTextAdfs
+            else
+                "The returned webpage does not look correct"
+            onFailure(errorText)
         }
-
-        //follow(realm)
-    }
-
-    fun follow(url: String) {
-        get(url) { location, text ->
-            if (location == null) {
-                println("Finished at $url")
-            }
-            else {
-                println("Redirecting to $location")
-                val wtrealm = HttpUrl.parse(location)?.queryParameter("wtrealm")
-                val wctx = HttpUrl.parse(location)?.queryParameter("wctx")
-                println(" - wtrealm: $wtrealm")
-                println(" - wctx: $wctx")
-                follow(location)
-            }
+        else {
+            onFailure("Could not get any valid certificate")
         }
     }
 }

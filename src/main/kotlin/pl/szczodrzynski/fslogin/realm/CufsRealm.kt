@@ -36,7 +36,7 @@ class CufsRealm(
             "Password" to password
         )).execute().body()
         if (certificate?.pageTitle?.startsWith("Working...") != true)
-            return null
+            return certificate
         println("Got certificate for ${certificate.formAction}")
         return certificate
     }

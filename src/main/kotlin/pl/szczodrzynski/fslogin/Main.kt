@@ -94,8 +94,8 @@ class Main(args: Array<String>) {
                 file.writeText(cert?.wresult ?: "null")
                 println("Saved as "+file.absolutePath)
             }
-        }, onFailure = {
-            println("Incorrect credentials! (did not get a certificate with \"Working...\" title)")
+        }, onFailure = { errorText ->
+            println("Incorrect credentials! ($errorText)")
             println()
             run(realm)
         })
