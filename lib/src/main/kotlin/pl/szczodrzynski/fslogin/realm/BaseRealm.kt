@@ -9,5 +9,9 @@ interface BaseRealm {
     fun getCtx(): String
     fun getFinalRealm(): String
 
-    fun getCertificate(fs: FSService, username: String, password: String): FSCertificateResponse?
+    /**
+     * Perform a login operation.
+     * @return a certificate meant to be POSTed to [getFinalRealm] URL.
+     */
+    fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean = false): FSCertificateResponse?
 }

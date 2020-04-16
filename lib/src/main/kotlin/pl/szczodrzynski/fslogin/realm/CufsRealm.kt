@@ -30,14 +30,14 @@ class CufsRealm(
     override fun getRealm() = "$scheme://uonetplus.$host/$symbol/$realmPath"
     override fun getCtx() = "$scheme://uonetplus.$host/$symbol/$realmPath"
     override fun getFinalRealm() = getRealm()
-    override fun getCertificate(fs: FSService, username: String, password: String): FSCertificateResponse? {
+    override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
         val certificate = fs.postCredentials(toString(), mapOf(
             "LoginName" to username,
             "Password" to password
         )).execute().body()
         if (certificate?.pageTitle?.startsWith("Working...") != true)
             return certificate
-        println("Got certificate for ${certificate.formAction}")
+        if (debug) println("Got certificate for ${certificate.formAction}")
         return certificate
     }
 

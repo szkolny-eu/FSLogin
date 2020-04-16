@@ -67,7 +67,7 @@ open class AdfsRealm(
     }
     override fun getFinalRealm() = cufsRealm?.getRealm() ?: getRealm()
 
-    override fun getCertificate(fs: FSService, username: String, password: String): FSCertificateResponse? {
+    override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
         var certificate = if (this is AdfsLightRealm) {
             fs.postCredentials(toString(), mapOf(
                 "Username" to username,
@@ -93,7 +93,7 @@ open class AdfsRealm(
 
         if (certificate?.pageTitle?.startsWith("Working...") != true)
             return certificate
-        println("Got certificate for ${certificate.formAction}")
+        if (debug) println("Got certificate for ${certificate.formAction}")
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm()) {
             certificate = fs.postCredentials(certificate.formAction, mapOf(
@@ -103,7 +103,7 @@ open class AdfsRealm(
             )).execute().body()
             if (certificate?.pageTitle?.startsWith("Working...") != true)
                 return certificate
-            println("Got certificate for ${certificate.formAction}")
+            if (debug) println("Got certificate for ${certificate.formAction}")
         }
 
         return certificate

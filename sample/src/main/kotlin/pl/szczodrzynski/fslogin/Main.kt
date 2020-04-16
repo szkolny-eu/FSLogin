@@ -1,5 +1,7 @@
 package pl.szczodrzynski.fslogin
 
+import okhttp3.ConnectionSpec
+import okhttp3.OkHttpClient
 import pl.szczodrzynski.fslogin.realm.AdfsLightRealm
 import pl.szczodrzynski.fslogin.realm.AdfsRealm
 import pl.szczodrzynski.fslogin.realm.BaseRealm
@@ -14,19 +16,15 @@ class Main(args: Array<String>) {
         }
     }
 
+    val http by lazy {
+        OkHttpClient.Builder()
+                .cookieJar(MyCookieJar())
+                .connectionSpecs(listOf(ConnectionSpec.COMPATIBLE_TLS))
+                .build()
+    }
+
     init { run {
         println("FS Login")
-
-        /*val realms2 = listOf(
-            "https://uonetplus.vulcan.net.pl/default/LoginEndpoint.aspx",
-            "https://uonetplus.vulcan.net.pl/powiatketrzynski/LoginEndpoint.aspx",
-            "https://uonetplus.resman.pl/rzeszow/LoginEndpoint.aspx",
-            "https://uonetplus.umt.tarnow.pl/tarnow/LoginEndpoint.aspx",
-            "https://uonetplus.edu.lublin.eu/lublin/LoginEndpoint.aspx",
-            "https://uonetplus.eszkola.opolskie.pl/default/LoginEndpoint.aspx",
-            "https://uonetplus.edu.gdansk.pl/gdansk/LoginEndpoint.aspx",
-            "https://iuczniowie.eduportal.koszalin.pl/"
-        )*/
 
         val authType: String? = null
         val realms = listOf(
@@ -76,13 +74,32 @@ class Main(args: Array<String>) {
         print("Enter password: ")
         val password = readLine() ?: return
 
-        FSLogin(realm, username, password, onSuccess = { cert ->
+        val fsLogin = FSLogin(http, debug = true)
+
+        fsLogin.performLogin(realm, username, password, onSuccess = { cert ->
             println("Certificate:")
-            println(" - title: ${cert?.pageTitle}")
-            println(" - action: ${cert?.formAction}")
-            println(" - wa: ${cert?.wa}")
-            println(" - wresult: ${cert?.wresult?.take(100)}...")
-            println(" - wctx: ${cert?.wctx}")
+            println(" - title: ${cert.pageTitle}")
+            println(" - action: ${cert.formAction}")
+            println(" - wa: ${cert.wa}")
+            println(" - wresult: ${cert.wresult.take(100)}...")
+            println(" - wctx: ${cert.wctx}")
+
+            if (cert.formAction != realm.getFinalRealm()) {
+                println("!!! Certificate action is different than the final realm:")
+                println(cert.formAction)
+                println("vs")
+                println(realm.getFinalRealm())
+            }
+
+            /*val result = fsLogin.api.postCertificate(cert.formAction, mapOf(
+                "wa" to cert.wa,
+                "wresult" to cert.wresult,
+                "wctx" to cert.wctx
+            )).execute().body()
+
+            print("POSTing the cert returned: \n")
+            println(result)
+            println()*/
 
             println()
             print("Type filename to dump XML certificate, or Enter to skip: ")
@@ -91,8 +108,8 @@ class Main(args: Array<String>) {
             if (filename != null && filename.isNotBlank()) {
                 val file = File(filename)
                 file.createNewFile()
-                file.writeText(cert?.wresult ?: "null")
-                println("Saved as "+file.absolutePath)
+                file.writeText(cert.wresult)
+                println("Saved as " + file.absolutePath)
             }
         }, onFailure = { errorText ->
             println("Incorrect credentials! ($errorText)")
