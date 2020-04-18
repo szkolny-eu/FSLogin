@@ -17,7 +17,7 @@ interface FSService {
 
     @POST
     @FormUrlEncoded
-    fun postCredentials(@Url url: String, @FieldMap formFields: Map<String, String>): Call<FSCertificateResponse>
+    fun postCredentials(@Url url: String, @FieldMap formFields: Map<String, String>): Call<String>
 
     @POST
     @FormUrlEncoded

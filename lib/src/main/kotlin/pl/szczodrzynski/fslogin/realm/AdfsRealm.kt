@@ -1,6 +1,7 @@
 package pl.szczodrzynski.fslogin.realm
 
 import okhttp3.OkHttpClient
+import pl.droidsonroids.jspoon.Jspoon
 import pl.szczodrzynski.fslogin.FSService
 import pl.szczodrzynski.fslogin.queryFrom
 import pl.szczodrzynski.fslogin.response.FSCertificateResponse
@@ -68,7 +69,7 @@ open class AdfsRealm(
     override fun getFinalRealm() = cufsRealm?.getRealm() ?: getRealm()
 
     override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
-        var certificate = if (this is AdfsLightRealm) {
+        var html = if (this is AdfsLightRealm) {
             fs.postCredentials(toString(), mapOf(
                 "Username" to username,
                 "Password" to password
@@ -91,16 +92,19 @@ open class AdfsRealm(
             ).execute().body()
         }
 
+        var certificate = Jspoon.create().adapter(FSCertificateResponse::class.java).fromHtml(html ?: "")
+
         if (certificate?.pageTitle?.startsWith("Working...") != true)
             return certificate
         if (debug) println("Got certificate for ${certificate.formAction}")
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm()) {
-            certificate = fs.postCredentials(certificate.formAction, mapOf(
+            html = fs.postCredentials(certificate.formAction, mapOf(
                 "wa" to certificate.wa,
                 "wresult" to certificate.wresult,
                 "wctx" to certificate.wctx
             )).execute().body()
+            certificate = Jspoon.create().adapter(FSCertificateResponse::class.java).fromHtml(html ?: "")
             if (certificate?.pageTitle?.startsWith("Working...") != true)
                 return certificate
             if (debug) println("Got certificate for ${certificate.formAction}")

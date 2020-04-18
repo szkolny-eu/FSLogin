@@ -1,5 +1,6 @@
 package pl.szczodrzynski.fslogin.realm
 
+import pl.droidsonroids.jspoon.Jspoon
 import pl.szczodrzynski.fslogin.FSService
 import pl.szczodrzynski.fslogin.encode
 import pl.szczodrzynski.fslogin.queryFrom
@@ -31,10 +32,11 @@ class CufsRealm(
     override fun getCtx() = "$scheme://uonetplus.$host/$symbol/$realmPath"
     override fun getFinalRealm() = getRealm()
     override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
-        val certificate = fs.postCredentials(toString(), mapOf(
+        val html = fs.postCredentials(toString(), mapOf(
             "LoginName" to username,
             "Password" to password
         )).execute().body()
+        val certificate = Jspoon.create().adapter(FSCertificateResponse::class.java).fromHtml(html ?: "")
         if (certificate?.pageTitle?.startsWith("Working...") != true)
             return certificate
         if (debug) println("Got certificate for ${certificate.formAction}")
