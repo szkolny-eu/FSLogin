@@ -1,0 +1,285 @@
+[
+    {
+        "id": 1,
+        "name": "Vulcan UONET+",
+        "description": "Zaloguj używając adresu e-mail i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_ss.png",
+        "formFields": [
+            "email",
+            "password"
+        ],
+        "realmData": {
+            "type": "cufs",
+            "host": "vulcan.net.pl",
+            "symbol": "default"
+        }
+    },
+    {
+        "id": 2,
+        "name": "Opolska eSzkoła",
+        "description": "eszkola.opolskie.pl - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/eszkola.opolskie.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/eszkola.opolskie.pl_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfs",
+            "host": "eszkola.opolskie.pl",
+            "symbol": "default",
+            "cufsHttp": true,
+            "adfsId": "eSzkola"
+        }
+    },
+    {
+        "id": 3,
+        "name": "Gdańska Platforma Edukacyjna",
+        "description": "edu.gdansk.pl - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.gdansk.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.gdansk.pl_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfs",
+            "host": "edu.gdansk.pl",
+            "symbol": "gdansk",
+            "adfsId": "adfs"
+        }
+    },
+    {
+        "id": 4,
+        "name": "Rzeszów ResMan2",
+        "description": "resman.pl - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/resman.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/resman.pl_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "resman.pl",
+            "symbol": "rzeszow",
+            "adfsId": "ADFS"
+        }
+    },
+    {
+        "id": 5,
+        "name": "Tarnów - EduNet eSzkoła",
+        "description": "umt.tarnow.pl - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/umt.tarnow.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/umt.tarnow.pl_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfs",
+            "host": "umt.tarnow.pl",
+            "symbol": "tarnow",
+            "adfsId": "adfs"
+        }
+    },
+    {
+        "id": 6,
+        "name": "Lubelski Portal Oświatowy",
+        "description": "edu.lublin.eu - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.lublin.eu.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.lublin.eu_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "edu.lublin.eu",
+            "symbol": "lublin",
+            "adfsDomain": "logowanie",
+            "adfsId": "AdfsLight"
+        }
+    },
+    {
+        "id": 7,
+        "name": "Sieradz - Portal Oświatowy",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_sieradz.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_sieradz_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "sieradz",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 8,
+        "name": "Rawa Mazowiecka - Platforma vEdukacja",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_rawamazowiecka.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_rawamazowiecka_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "rawamazowiecka",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 9,
+        "name": "Łask - Platforma vEdukacja",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_lask.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_lask_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "lask",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 10,
+        "name": "Powiat Kętrzyński - Platforma e-usług",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatketrzynski.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatketrzynski_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "powiatketrzynski",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 11,
+        "name": "Powiat łaski - platforma edukacyjna",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatlaski.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatlaski_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "powiatlaski",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 12,
+        "name": "Zduńska Wola - e-urząd",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_zdunskawola.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_zdunskawola_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "zdunskawola",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 13,
+        "name": "Gmina Ozorków",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaozorkow.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaozorkow_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "gminaozorkow",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 14,
+        "name": "Gmina Ulan-Majorat",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaulanmajorat.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaulanmajorat_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "gminaulanmajorat",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 15,
+        "name": "Powiat Krasnostawski",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatkrasnostawski.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatkrasnostawski_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "powiatkrasnostawski",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    },
+    {
+        "id": 16,
+        "name": "Gmina Łopiennik Górny",
+        "description": "Zaloguj używając nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminalopiennikgorny.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminalopiennikgorny_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "realmData": {
+            "type": "adfslight",
+            "host": "vulcan.net.pl",
+            "symbol": "gminalopiennikgorny",
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
+        }
+    }
+]
