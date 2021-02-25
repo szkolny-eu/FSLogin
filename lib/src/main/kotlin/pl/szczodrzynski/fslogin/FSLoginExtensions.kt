@@ -17,6 +17,7 @@ fun queryFrom(vararg params: Pair<String, String>): String {
 
 fun postCredentials(fs: FSService, url: String, params: Map<String, String>, debug: Boolean): FSCertificateResponse {
     val html = fs.postCredentials(url, params).execute().body()
+    if (debug) println(html)
     val certificate = Jspoon.create().adapter(FSCertificateResponse::class.java).fromHtml(html ?: "")
     if (debug) println("Got certificate for ${certificate.formAction}")
     return certificate
