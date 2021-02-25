@@ -4,7 +4,7 @@ A list of realms suitable for passing to FSLogin.
 
 These realms include sites used to log into these e-registers:
 - [Vulcan UONET+](https://szkolny-eu.github.io/FSLogin/realms/vulcan.json)
-- [iDziennik](https://szkolny-eu.github.io/FSLogin/realms/idziennik.json)
+- ~~iDziennik~~ shutdown since Jan 28, 2021
 
 The author does not take responsibility for anyone using this data.
 
