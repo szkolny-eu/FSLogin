@@ -1,8 +1,8 @@
 package pl.szczodrzynski.fslogin.realm
 
-import pl.droidsonroids.jspoon.Jspoon
 import pl.szczodrzynski.fslogin.FSService
 import pl.szczodrzynski.fslogin.encode
+import pl.szczodrzynski.fslogin.postCredentials
 import pl.szczodrzynski.fslogin.queryFrom
 import pl.szczodrzynski.fslogin.response.FSCertificateResponse
 
@@ -32,15 +32,22 @@ class CufsRealm(
     override fun getCtx() = "$scheme://uonetplus.$host/$symbol/$realmPath"
     override fun getFinalRealm() = getRealm()
     override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
-        val html = fs.postCredentials(toString(), mapOf(
-            "LoginName" to username,
-            "Password" to password
-        )).execute().body()
-        val certificate = Jspoon.create().adapter(FSCertificateResponse::class.java).fromHtml(html ?: "")
-        if (certificate?.pageTitle?.startsWith("Working...") != true)
-            return certificate
-        if (debug) println("Got certificate for ${certificate.formAction}")
-        return certificate
+        return postCredentials(
+            fs, toString(), mapOf(
+                "LoginName" to username,
+                "Password" to password
+            ), debug
+        )
+    }
+
+    fun getCertificate(fs: FSService, adfsCertificate: FSCertificateResponse, debug: Boolean): FSCertificateResponse {
+        return postCredentials(
+            fs, adfsCertificate.formAction, mapOf(
+                "wa" to adfsCertificate.wa,
+                "wresult" to adfsCertificate.wresult,
+                "wctx" to adfsCertificate.wctx
+            ), debug
+        )
     }
 
     fun toAdfsRealm(id: String, authType: String? = null): AdfsRealm {
@@ -53,6 +60,20 @@ class CufsRealm(
             cufsRealm = this,
             id = id,
             authType = authType
+        )
+    }
+
+    fun toAdfsPortalRealm(id: String, portalDomain: String, authType: String? = null): AdfsRealm {
+        return AdfsPortalRealm(
+            scheme = scheme,
+            hostPrefix = "cufs",
+            host = host,
+            path = "$symbol/FS/LS",
+            realmPath = "$symbol/Account/LogOn",
+            cufsRealm = this,
+            id = id,
+            authType = authType,
+            portalDomain = portalDomain
         )
     }
 
