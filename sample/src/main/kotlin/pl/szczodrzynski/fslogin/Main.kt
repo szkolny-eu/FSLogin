@@ -3,9 +3,10 @@ package pl.szczodrzynski.fslogin
 import okhttp3.ConnectionSpec
 import okhttp3.OkHttpClient
 import pl.szczodrzynski.fslogin.realm.AdfsLightRealm
-import pl.szczodrzynski.fslogin.realm.AdfsRealm
 import pl.szczodrzynski.fslogin.realm.BaseRealm
-import pl.szczodrzynski.fslogin.realm.CufsRealm
+import pl.szczodrzynski.fslogin.realm.toRealm
+import retrofit2.Retrofit
+import retrofit2.converter.gson.GsonConverterFactory
 import java.io.File
 
 class Main(args: Array<String>) {
@@ -16,41 +17,37 @@ class Main(args: Array<String>) {
         }
     }
 
-    val http by lazy {
+    private val http by lazy {
         OkHttpClient.Builder()
                 .cookieJar(MyCookieJar())
-                .connectionSpecs(listOf(ConnectionSpec.COMPATIBLE_TLS))
+                .connectionSpecs(listOf(ConnectionSpec.CLEARTEXT, ConnectionSpec.COMPATIBLE_TLS))
                 .build()
     }
+
+    private val realmsService = Retrofit.Builder()
+        .client(http)
+        .baseUrl("https://szkolny-eu.github.io/FSLogin/")
+        .addConverterFactory(GsonConverterFactory.create())
+        .build()
+        .create(RealmsService::class.java)
 
     init { run {
         println("FS Login")
 
         val authType: String? = null
-        val realms = listOf(
-            // CUFS
-            CufsRealm(host = "vulcan.net.pl", symbol = "default"),
-            CufsRealm(host = "fakelog.cf", symbol = "powiatwulkanowy"),
-            // ADFS
-            CufsRealm(host = "umt.tarnow.pl", symbol = "tarnow").toAdfsRealm(id = "adfs", authType = authType),
-            CufsRealm(host = "edu.gdansk.pl", symbol = "gdansk").toAdfsRealm(id = "adfs", authType = authType),
-            CufsRealm(host = "eszkola.opolskie.pl", symbol = "opole", httpCufs = true).toAdfsRealm(id = "eSzkola", authType = authType),
-            /* https://uonetplus.eszkola.opolskie.pl/brzeg/BrzegG1 */
-            CufsRealm(host = "eszkola.opolskie.pl", symbol = "brzeg", httpCufs = true, realmPath = "brzegg1/LoginEndpoint.aspx").toAdfsRealm(id = "eSzkola", authType = authType),
-            // ADFS LIGHT
-            CufsRealm(host = "vulcan.net.pl", symbol = "powiatketrzynski").toAdfsLightRealm(id = "ADFSLight", isScoped = true),
-            CufsRealm(host = "resman.pl", symbol = "rzeszow").toAdfsLightRealm(id = "ADFS"),
-            CufsRealm(host = "edu.lublin.eu", symbol = "lublin").toAdfsLightRealm(id = "AdfsLight", domain = "logowanie"),
-            // IUCZNIOWIE
-            AdfsRealm(hostPrefix = "iuczniowie", host = "eduportal.koszalin.pl", path = "Default.aspx", id = "passive", authType = authType),
-            AdfsRealm(hostPrefix = "iuczniowie", host = "eszkola.opolskie.pl", path = "Default.aspx", id = "passive", authType = authType),
+
+        println("Getting FSLogin realms\n")
+        val realmsResponse = realmsService.getRealms("vulcan").execute()
+        val realmsRaw = realmsResponse.body() ?: throw RuntimeException(realmsResponse.message())
+
+        val realms = realmsRaw
+            .mapNotNull { it.realmData.toRealm() }
+            .toMutableList()
+
+        realms.add(
             // LIBRUS SSO
             AdfsLightRealm(hostPrefix = "synergia", host = "librus.pl", adfsHost = "oswiatawradomiu.pl", path = "loguj/radom", id = "passive")
         )
-
-        /*for (realm in realms) {
-            println("URL for ${realm.getFinalRealm()} is: $realm")
-        }*/
 
         realms.forEachIndexed { index, realm ->
             println(" - $index: ${realm.getFinalRealm()}")

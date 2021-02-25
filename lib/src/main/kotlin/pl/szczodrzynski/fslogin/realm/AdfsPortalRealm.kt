@@ -1,9 +1,12 @@
 package pl.szczodrzynski.fslogin.realm
 
-import pl.szczodrzynski.fslogin.*
+import pl.szczodrzynski.fslogin.FSService
+import pl.szczodrzynski.fslogin.getTimestamp
+import pl.szczodrzynski.fslogin.postCredentials
+import pl.szczodrzynski.fslogin.queryFrom
 import pl.szczodrzynski.fslogin.response.FSCertificateResponse
 
-class AdfsLightRealm(
+class AdfsPortalRealm(
     scheme: String = "https",
     hostPrefix: String,
     host: String,
@@ -12,22 +15,23 @@ class AdfsLightRealm(
     realmPath: String = path,
     cufsRealm: CufsRealm? = null,
     id: String,
-    val domain: String = "adfslight",
-    val scope: String = ""
-) : AdfsRealm(scheme, hostPrefix, host, adfsHost, path, realmPath, cufsRealm, id, null) {
+    authType: String? = null,
+    val portalDomain: String
+) : AdfsRealm(scheme, hostPrefix, host, adfsHost, path, realmPath, cufsRealm, id, authType) {
 
     override fun toString(): String {
-        // for scoped CUFS (with ADFSLight)
-        val returnScope = if (scope.isNotBlank())
-            "${scope.encode()}default.aspx"
-        else ""
-
-        return "$scheme://$domain.$adfsHost/${scope}LoginPage.aspx?ReturnUrl=%2F$returnScope%3F" + queryFrom(
+        val authPath = when (authType) {
+            "integrated" -> "auth/integrated/" // __db=16
+            "sslclient" -> "auth/sslclient/" // __db=17
+            "basic" -> "auth/basic/" // __db=18
+            else -> ""
+        }
+        return "$scheme://adfs.$adfsHost/adfs/ls$authPath?" + queryFrom(
             "wa" to "wsignin1.0",
             "wtrealm" to getRealm(),
             "wctx" to getCtx(),
             "wct" to getTimestamp()
-        ).encode()
+        )
     }
 
     override fun getCertificate(
@@ -38,8 +42,9 @@ class AdfsLightRealm(
     ): FSCertificateResponse {
         val certificate = postCredentials(
             fs, toString(), mapOf(
-                "Username" to username,
-                "Password" to password
+                "UserName" to "$portalDomain\\$username",
+                "Password" to password,
+                "AuthMethod" to "FormsAuthentication"
             ), debug
         )
 

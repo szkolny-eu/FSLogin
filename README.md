@@ -17,31 +17,15 @@ the latest version (not recommended though, may be unstable).
 
 #### Create a Realm.
 
-You may obtain most of the supported login realms from the [FSLogin Realms](https://szkolny-eu.github.io/FSLogin/realms/) page. The selected `realmData` may be used to create an appropriate Realm.
+You may obtain most of the supported login realms from the [FSLogin Realms](https://szkolny-eu.github.io/FSLogin/realms/) page.
+The selected `realmData` may be used to create an appropriate Realm.
 
-Make sure that the URL (toString()) matches the normal form URL you would get in a web browser.
-
-Some examples:
 ```kotlin
-// CUFS
-CufsRealm(host = "vulcan.net.pl", symbol = "default")
-CufsRealm(host = "fakelog.cf", symbol = "powiatwulkanowy")
-// ADFS
-CufsRealm(host = "edu.gdansk.pl", symbol = "gdansk").toAdfsRealm(id = "adfs", authType = authType)
-CufsRealm(host = "eszkola.opolskie.pl", symbol = "opole", httpCufs = true).toAdfsRealm(id = "eSzkola", authType = authType)
-/* https://uonetplus.eszkola.opolskie.pl/brzeg/BrzegG1 */
-CufsRealm(host = "eszkola.opolskie.pl", symbol = "brzeg", httpCufs = true, realmPath = "brzegg1/LoginEndpoint.aspx").toAdfsRealm(id = "eSzkola", authType = authType)
-// ADFS LIGHT
-CufsRealm(host = "resman.pl", symbol = "rzeszow").toAdfsLightRealm(id = "ADFS")
-CufsRealm(host = "edu.lublin.eu", symbol = "lublin").toAdfsLightRealm(id = "AdfsLight", domain = "logowanie")
-// ADFS LIGHT - scoped
-CufsRealm(host = "vulcan.net.pl", symbol = "powiatketrzynski").toAdfsLightRealm(id = "ADFSLight", isScoped = true)
-// IUCZNIOWIE
-AdfsRealm(hostPrefix = "iuczniowie", host = "eduportal.koszalin.pl", path = "Default.aspx", id = "passive", authType = authType)
-AdfsRealm(hostPrefix = "iuczniowie", host = "eszkola.opolskie.pl", path = "Default.aspx", id = "passive", authType = authType)
-// LIBRUS SSO
-AdfsLightRealm(hostPrefix = "synergia", host = "librus.pl", adfsHost = "oswiatawradomiu.pl", path = "loguj/radom", id = "passive")
+val realmData = RealmData() // pass the values here
+val realm = realmData.toRealm()
 ```
+
+You can deserialize the `realmData` JSON directly to an object, using e.g. Retrofit or Gson.
 
 #### Log in
 
@@ -104,7 +88,7 @@ SDK provided under [Apache License 2.0](https://github.com/wulkanowy/sdk/blob/ma
 ```
 MIT License
 
-Copyright (c) 2020 kuba2k2
+Copyright (c) 2021 kuba2k2
 
 Permission is hereby granted, free of charge, to any person obtaining a copy
 of this software and associated documentation files (the "Software"), to deal

@@ -10,6 +10,9 @@ class FSCertificateResponse {
     @Selector("#ErrorTextLabel")
     var errorTextAdfs: String = ""
 
+    @Selector("#errorText")
+    var errorTextAdfsPortal: String = ""
+
     @Selector(".ErrorMessage")
     var errorTextCufs: String = ""
 
@@ -24,4 +27,6 @@ class FSCertificateResponse {
 
     @Selector("input[name=wctx]", attr = "value")
     var wctx: String = ""
+
+    fun isValid() = pageTitle.startsWith("Working...")
 }

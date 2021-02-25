@@ -1,6 +1,6 @@
 [
     {
-        "id": 1,
+        "id": 10,
         "name": "Vulcan UONET+",
         "description": "Zaloguj używając adresu e-mail i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl.png",
@@ -9,14 +9,15 @@
             "email",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/default/LoginEndpoint.aspx",
         "realmData": {
-            "type": "cufs",
+            "type": "Cufs",
             "host": "vulcan.net.pl",
             "symbol": "default"
         }
     },
     {
-        "id": 2,
+        "id": 20,
         "name": "Opolska eSzkoła",
         "description": "eszkola.opolskie.pl - użyj nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/eszkola.opolskie.pl.png",
@@ -25,8 +26,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.eszkola.opolskie.pl/default/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfs",
+            "type": "CufsAdfs",
             "host": "eszkola.opolskie.pl",
             "symbol": "default",
             "cufsHttp": true,
@@ -34,7 +36,7 @@
         }
     },
     {
-        "id": 3,
+        "id": 30,
         "name": "Gdańska Platforma Edukacyjna",
         "description": "edu.gdansk.pl - użyj nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.gdansk.pl.png",
@@ -43,15 +45,17 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.edu.gdansk.pl/gdansk/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfs",
+            "type": "CufsAdfsPortal",
             "host": "edu.gdansk.pl",
             "symbol": "gdansk",
-            "adfsId": "adfs"
+            "adfsId": "adfs",
+            "adfsPortalDomain": "GPE"
         }
     },
     {
-        "id": 4,
+        "id": 40,
         "name": "Rzeszów ResMan2",
         "description": "resman.pl - użyj nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/resman.pl.png",
@@ -60,15 +64,35 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.resman.pl/rzeszow/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "resman.pl",
             "symbol": "rzeszow",
             "adfsId": "ADFS"
         }
     },
     {
-        "id": 5,
+        "id": 50,
+        "name": "Portal Edukacyjny Miasta Koszalina",
+        "description": "eduportal.koszalin.pl - użyj nazwy użytkownika i hasła",
+        "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/eduportal.koszalin.pl.png",
+        "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/eduportal.koszalin.pl_ss.png",
+        "formFields": [
+            "username",
+            "password"
+        ],
+        "loginUrl": "https://uonetplus.eduportal.koszalin.pl/koszalin/LoginEndpoint.aspx",
+        "realmData": {
+            "type": "CufsAdfsPortal",
+            "host": "eduportal.koszalin.pl",
+            "symbol": "koszalin",
+            "adfsId": "ADFS",
+            "adfsPortalDomain": "EDUPORTAL"
+        }
+    },
+    {
+        "id": 60,
         "name": "Tarnów - EduNet eSzkoła",
         "description": "umt.tarnow.pl - użyj nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/umt.tarnow.pl.png",
@@ -77,15 +101,17 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.umt.tarnow.pl/tarnow/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfs",
+            "type": "CufsAdfsPortal",
             "host": "umt.tarnow.pl",
             "symbol": "tarnow",
-            "adfsId": "adfs"
+            "adfsId": "adfs",
+            "adfsPortalDomain": "EDUNET"
         }
     },
     {
-        "id": 6,
+        "id": 70,
         "name": "Lubelski Portal Oświatowy",
         "description": "edu.lublin.eu - użyj nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/edu.lublin.eu.png",
@@ -94,8 +120,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.edu.lublin.eu/lublin/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "edu.lublin.eu",
             "symbol": "lublin",
             "adfsDomain": "logowanie",
@@ -103,7 +130,7 @@
         }
     },
     {
-        "id": 7,
+        "id": 80,
         "name": "Sieradz - Portal Oświatowy",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_sieradz.png",
@@ -112,8 +139,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/sieradz/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "sieradz",
             "adfsIsScoped": true,
@@ -121,7 +149,7 @@
         }
     },
     {
-        "id": 8,
+        "id": 90,
         "name": "Rawa Mazowiecka - Platforma vEdukacja",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_rawamazowiecka.png",
@@ -130,8 +158,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/rawamazowiecka/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "rawamazowiecka",
             "adfsIsScoped": true,
@@ -139,7 +168,7 @@
         }
     },
     {
-        "id": 9,
+        "id": 100,
         "name": "Łask - Platforma vEdukacja",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_lask.png",
@@ -148,8 +177,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/lask/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "lask",
             "adfsIsScoped": true,
@@ -157,7 +187,7 @@
         }
     },
     {
-        "id": 10,
+        "id": 110,
         "name": "Powiat Kętrzyński - Platforma e-usług",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatketrzynski.png",
@@ -166,8 +196,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/powiatketrzynski/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "powiatketrzynski",
             "adfsIsScoped": true,
@@ -175,7 +206,7 @@
         }
     },
     {
-        "id": 11,
+        "id": 120,
         "name": "Powiat łaski - platforma edukacyjna",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatlaski.png",
@@ -184,8 +215,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/powiatlaski/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "powiatlaski",
             "adfsIsScoped": true,
@@ -193,7 +225,7 @@
         }
     },
     {
-        "id": 12,
+        "id": 130,
         "name": "Zduńska Wola - e-urząd",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_zdunskawola.png",
@@ -202,8 +234,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/zdunskawola/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "zdunskawola",
             "adfsIsScoped": true,
@@ -211,7 +244,7 @@
         }
     },
     {
-        "id": 13,
+        "id": 140,
         "name": "Gmina Ozorków",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaozorkow.png",
@@ -220,8 +253,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/gminaozorkow/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "gminaozorkow",
             "adfsIsScoped": true,
@@ -229,7 +263,7 @@
         }
     },
     {
-        "id": 14,
+        "id": 150,
         "name": "Gmina Ulan-Majorat",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminaulanmajorat.png",
@@ -238,8 +272,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/gminaulanmajorat/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "gminaulanmajorat",
             "adfsIsScoped": true,
@@ -247,7 +282,7 @@
         }
     },
     {
-        "id": 15,
+        "id": 160,
         "name": "Powiat Krasnostawski",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_powiatkrasnostawski.png",
@@ -256,8 +291,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/powiatkrasnostawski/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "powiatkrasnostawski",
             "adfsIsScoped": true,
@@ -265,7 +301,7 @@
         }
     },
     {
-        "id": 16,
+        "id": 170,
         "name": "Gmina Łopiennik Górny",
         "description": "Zaloguj używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/vulcan.net.pl_gminalopiennikgorny.png",
@@ -274,8 +310,9 @@
             "username",
             "password"
         ],
+        "loginUrl": "https://uonetplus.vulcan.net.pl/gminalopiennikgorny/LoginEndpoint.aspx",
         "realmData": {
-            "type": "adfslight",
+            "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "gminalopiennikgorny",
             "adfsIsScoped": true,

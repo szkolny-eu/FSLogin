@@ -1,7 +1,6 @@
 package pl.szczodrzynski.fslogin
 
 import pl.szczodrzynski.fslogin.response.ADFSFormResponse
-import pl.szczodrzynski.fslogin.response.FSCertificateResponse
 import retrofit2.Call
 import retrofit2.http.*
 
