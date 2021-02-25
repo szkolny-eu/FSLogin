@@ -13,6 +13,7 @@ repositories {
 dependencies {
     implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk8"
     implementation project(":lib")
+    implementation "com.squareup.retrofit2:converter-gson:2.8.1"
 }
 
 compileKotlin {
