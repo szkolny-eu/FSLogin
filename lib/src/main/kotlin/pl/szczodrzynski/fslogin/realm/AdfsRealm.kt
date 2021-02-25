@@ -84,7 +84,7 @@ open class AdfsRealm(
             ), debug
         )
 
-        if (!certificate.isValid)
+        if (!certificate.isValid())
             return certificate
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm())

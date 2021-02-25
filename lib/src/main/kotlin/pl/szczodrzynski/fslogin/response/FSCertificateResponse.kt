@@ -28,5 +28,5 @@ class FSCertificateResponse {
     @Selector("input[name=wctx]", attr = "value")
     var wctx: String = ""
 
-    val isValid = pageTitle.startsWith("Working...")
+    fun isValid() = pageTitle.startsWith("Working...")
 }

@@ -42,7 +42,7 @@ class FSLogin(
         if (debug) println("Getting realm $realm")
         val certificate = realm.getCertificate(api, username, password)
         when {
-            certificate.isValid -> {
+            certificate.isValid() -> {
                 onSuccess(certificate)
             }
             else -> {
