@@ -8,10 +8,10 @@ import retrofit2.Retrofit
 import retrofit2.converter.scalars.ScalarsConverterFactory
 
 class FSLogin(
-    val http: OkHttpClient,
+    private val http: OkHttpClient,
     val debug: Boolean = false
 ) {
-    val api by lazy {
+    private val api by lazy {
         val retrofit = Retrofit.Builder()
             .client(http)
             .baseUrl("https://example.com/") // retrofit needs a base URL
@@ -42,19 +42,17 @@ class FSLogin(
         if (debug) println("Getting realm $realm")
         val certificate = realm.getCertificate(api, username, password)
         when {
-            certificate?.pageTitle?.startsWith("Working...") == true -> {
+            certificate.isValid -> {
                 onSuccess(certificate)
             }
-            certificate != null -> {
+            else -> {
                 val errorText = when {
                     certificate.errorTextCufs.isNotBlank() -> certificate.errorTextCufs
                     certificate.errorTextAdfs.isNotBlank() -> certificate.errorTextAdfs
+                    certificate.errorTextAdfsPortal.isNotBlank() -> certificate.errorTextAdfsPortal
                     else -> "The returned webpage does not look correct"
                 }
                 onFailure(errorText)
-            }
-            else -> {
-                onFailure("Could not get any valid certificate")
             }
         }
     }

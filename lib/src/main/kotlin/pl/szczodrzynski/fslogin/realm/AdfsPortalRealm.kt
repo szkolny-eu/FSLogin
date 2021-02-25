@@ -39,7 +39,7 @@ class AdfsPortalRealm(
         username: String,
         password: String,
         debug: Boolean
-    ): FSCertificateResponse? {
+    ): FSCertificateResponse {
         val certificate = postCredentials(
             fs, toString(), mapOf(
                 "UserName" to "$portalDomain\\$username",
@@ -47,6 +47,9 @@ class AdfsPortalRealm(
                 "AuthMethod" to "FormsAuthentication"
             ), debug
         )
+
+        if (!certificate.isValid)
+            return certificate
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm())
             return cufsRealm.getCertificate(fs, certificate, debug)

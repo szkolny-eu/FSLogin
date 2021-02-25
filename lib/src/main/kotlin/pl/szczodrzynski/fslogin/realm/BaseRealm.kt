@@ -13,5 +13,5 @@ interface BaseRealm {
      * Perform a login operation.
      * @return a certificate meant to be POSTed to [getFinalRealm] URL.
      */
-    fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean = false): FSCertificateResponse?
+    fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean = false): FSCertificateResponse
 }

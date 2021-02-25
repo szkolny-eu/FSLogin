@@ -30,13 +30,21 @@ class AdfsLightRealm(
         ).encode()
     }
 
-    override fun getCertificate(fs: FSService, username: String, password: String, debug: Boolean): FSCertificateResponse? {
+    override fun getCertificate(
+        fs: FSService,
+        username: String,
+        password: String,
+        debug: Boolean
+    ): FSCertificateResponse {
         val certificate = postCredentials(
             fs, toString(), mapOf(
                 "Username" to username,
                 "Password" to password
             ), debug
         )
+
+        if (!certificate.isValid)
+            return certificate
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm())
             return cufsRealm.getCertificate(fs, certificate, debug)

@@ -68,7 +68,7 @@ open class AdfsRealm(
         username: String,
         password: String,
         debug: Boolean
-    ): FSCertificateResponse? {
+    ): FSCertificateResponse {
         val adfsForm = fs.getAdfsForm(toString()).execute().body() ?: throw RuntimeException("adfsForm == null")
 
         val certificate = postCredentials(
@@ -83,6 +83,9 @@ open class AdfsRealm(
                 "SubmitButton.y" to "0"
             ), debug
         )
+
+        if (!certificate.isValid)
+            return certificate
 
         if (cufsRealm != null && certificate.formAction != getFinalRealm())
             return cufsRealm.getCertificate(fs, certificate, debug)

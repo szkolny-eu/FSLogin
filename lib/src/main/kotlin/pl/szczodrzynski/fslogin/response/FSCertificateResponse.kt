@@ -10,6 +10,9 @@ class FSCertificateResponse {
     @Selector("#ErrorTextLabel")
     var errorTextAdfs: String = ""
 
+    @Selector("#errorText")
+    var errorTextAdfsPortal: String = ""
+
     @Selector(".ErrorMessage")
     var errorTextCufs: String = ""
 
