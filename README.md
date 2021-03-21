@@ -7,8 +7,12 @@ ADFS &amp; Vulcan CUFS Login module
 #### Install the library dependency.
 
 ```gradle
+repositories {
+    jcenter()
+    maven { url "https://jitpack.io" }
+}
 dependencies {
-    implementation 'com.github.szkolny-eu.FSLogin:lib:<version>'
+    implementation 'eu.szkolny.fslogin:lib:<version>'
 }
 ```
 
