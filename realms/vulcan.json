@@ -31,7 +31,6 @@
             "type": "CufsAdfs",
             "host": "eszkola.opolskie.pl",
             "symbol": "default",
-            "cufsHttp": true,
             "adfsId": "eSzkola"
         }
     },
@@ -47,11 +46,11 @@
         ],
         "loginUrl": "https://uonetplus.edu.gdansk.pl/gdansk/LoginEndpoint.aspx",
         "realmData": {
-            "type": "CufsAdfsPortal",
+            "type": "CufsAdfsLight",
             "host": "edu.gdansk.pl",
             "symbol": "gdansk",
-            "adfsId": "adfs",
-            "adfsPortalDomain": "GPE"
+            "adfsDomain": "logowanie",
+            "adfsId": "adfs"
         }
     },
     {
