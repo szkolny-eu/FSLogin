@@ -8,11 +8,7 @@ object RealmUtils {
             httpCufs = data.cufsHttp,
             host = data.host,
             symbol = data.symbol,
-            realmPath =
-            if (data.type.name.contains("Adfs") && data.adfsDomain == null && !data.adfsIsScoped)
-                ""
-            else
-                "LoginEndpoint.aspx"
+            realmPath = "LoginEndpoint.aspx"
         )
     }
 
