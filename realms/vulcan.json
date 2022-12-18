@@ -56,7 +56,7 @@
     {
         "id": 40,
         "name": "Rzeszów ResMan2",
-        "description": "resman.pl - użyj nazwy użytkownika i hasła",
+        "description": "Zaloguj się używając nazwy użytkownika i hasła",
         "icon": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/resman.pl.png",
         "screenshot": "https://szkolny-eu.github.io/FSLogin/realms/vulcan/resman.pl_ss.png",
         "formFields": [
@@ -68,7 +68,8 @@
             "type": "CufsAdfsLight",
             "host": "vulcan.net.pl",
             "symbol": "rzeszowprojekt",
-            "adfsId": "ADFS"
+            "adfsIsScoped": true,
+            "adfsId": "ADFSLight"
         }
     },
     {
