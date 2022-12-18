@@ -63,11 +63,11 @@
             "username",
             "password"
         ],
-        "loginUrl": "https://uonetplus.resman.pl/rzeszow/LoginEndpoint.aspx",
+        "loginUrl": "https://uonetplus.vulcan.net.pl/rzeszowprojekt/LoginEndpoint.aspx",
         "realmData": {
             "type": "CufsAdfsLight",
-            "host": "resman.pl",
-            "symbol": "rzeszow",
+            "host": "vulcan.net.pl",
+            "symbol": "rzeszowprojekt",
             "adfsId": "ADFS"
         }
     },
